@@ -35,3 +35,18 @@ def getIntersectionNode(headA, headB):
         headB = headB.next
 
     return headA # return any of the head.
+#-------------------------------------------------------------------------------
+# Another way is to using two iteration to cancel the difference in length.
+# The idea is that if both pointers iterate both A linked list and B linked list
+# Once, lengthA + lengthB = lengthB + lengthA, then they will reach the intersaction at the same time.
+def getIntersectionNode(headA, headB):
+        if not headA or not headB:
+            return None
+        A = headA;
+        B = headB;
+        while (A != B):
+            # When A reach the end of the link, reset it to the head of B.
+            A = headB if A is None else A.next
+            # When B reach the end of the link, reset it to the head of A.
+            B = headA if B is None else B.next
+        return A
